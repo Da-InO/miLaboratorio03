@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduccion a CSS</title>
+    <link rel="stylesheet" href="tarea.css">
+</head>
+
+<body>
+    <h1>Casa de Cambio de Daniel</h1>
+    <label for="moneda">Seleccionar moneda a enviar:</label>
+
+    <br><br>
+    <select id="moneda">
+        <option value="USD">Dólar (USD)</option>
+        <option value="EUR">Euro (EUR)</option>
+    </select>
+    <br><br>
+
+    <label for="cantidad">Ingresar monto:</label>
+    <br><br>
+    <input type="number" id="cantidad" placeholder="Ingrese el monto">
+    <br><br>
+    <button id="Boton_calcular">Cotizar</button>
+
+    <script>
+        document.getElementById('Boton_calcular').addEventListener('click', function() {
+            var moneda = document.getElementById('moneda').value;
+            var cantidad_a_convertir = parseFloat(document.getElementById('cantidad').value);
+            
+            if (isNaN(cantidad_a_convertir)) {
+                alert('Por favor, ingresa un monto válido.');
+                return;
+            }
+            var exchangeRates = {
+                USD: 1.0,
+                EUR: 0.85 
+            };
+
+            var moneda = moneda === 'USD' ? 'EUR' : 'USD';
+            var exchangeRate = exchangeRates[moneda];
+
+            var montototal = cantidad_a_convertir * exchangeRate;
+
+            alert('Recibirás ' + montototal.toFixed(2) + ' ' + moneda);
+        });
+    </script>
+</body>
+</html>
